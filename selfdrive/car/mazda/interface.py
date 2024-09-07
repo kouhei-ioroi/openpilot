@@ -31,7 +31,7 @@ class CarInterface(CarInterfaceBase):
     #if ret.enableTorqueInterceptor:
     #  print("Recieving torque interceptor signal.")
 
-    ret.steerActuatorDelay = 0.1
+    ret.steerActuatorDelay = 0.08
     ret.steerRateCost = 1.0
     ret.steerLimitTimer = 0.8
     tire_stiffness_factor = 0.70   # not optimized yet
@@ -44,9 +44,9 @@ class CarInterface(CarInterfaceBase):
         ret.steerRatio = 15.5
         ret.lateralTuning.pid.kiBP = [5.0, 25.0]
         ret.lateralTuning.pid.kpBP = [5.0, 25.0]
-        ret.lateralTuning.pid.kpV = [0.25,0.28]
-        ret.lateralTuning.pid.kiV = [0.01,0.025]
-        ret.lateralTuning.pid.kf = 0.00008
+        ret.lateralTuning.pid.kpV = [0.2,0.2]
+        ret.lateralTuning.pid.kiV = [0.26,0.03]
+        ret.lateralTuning.pid.kf = 0.0001
 
         ret.lateralTuning.init('indi')
         ret.lateralTuning.indi.innerLoopGainBP = [5.0, 35]
@@ -91,11 +91,20 @@ class CarInterface(CarInterfaceBase):
         ret.mass = 3443 * CV.LB_TO_KG + STD_CARGO_KG
         ret.wheelbase = 2.83
         ret.steerRatio = 15.5
-        ret.lateralTuning.pid.kiBP = [8.0, 30.0]
-        ret.lateralTuning.pid.kpBP = [8.0, 30.0]
-        ret.lateralTuning.pid.kpV = [0.10,0.22]
-        ret.lateralTuning.pid.kiV = [0.01,0.019]
-        ret.lateralTuning.pid.kf = 0.00006
+        ret.lateralTuning.pid.kiBP = [5.0, 25.0]
+        ret.lateralTuning.pid.kpBP = [5.0, 25.0]
+        ret.lateralTuning.pid.kpV = [0.2,0.2]
+        ret.lateralTuning.pid.kiV = [0.25,0.25]
+        ret.lateralTuning.pid.kf = 0.0002
+        ret.lateralTuning.init('indi')
+        ret.lateralTuning.indi.innerLoopGainBP = [5.0, 35]
+        ret.lateralTuning.indi.innerLoopGainV = [4, 5]
+        ret.lateralTuning.indi.outerLoopGainBP = [5, 35]
+        ret.lateralTuning.indi.outerLoopGainV = [4, 5]
+        ret.lateralTuning.indi.timeConstantBP = [2, 35]
+        ret.lateralTuning.indi.timeConstantV = [0.7, 1.2]
+        ret.lateralTuning.indi.actuatorEffectivenessBP = [0, 25]
+        ret.lateralTuning.indi.actuatorEffectivenessV = [1.2, 1]
     else:
       if candidate in (CAR.CX5, CAR.CX5_2022):
         ret.mass = 3655 * CV.LB_TO_KG + STD_CARGO_KG
